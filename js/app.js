@@ -18,17 +18,30 @@ async function fetchRequests(){
   return data;
 }
 
+function slug(str){
+  return String(str || '').toLowerCase().replace(/\s+/g, '-');
+}
+
 function renderRows(rows){
   tableBody.innerHTML = '';
+
+  if (!rows || rows.length === 0){
+    const tr = document.createElement('tr');
+    tr.className = 'empty-row';
+    tr.innerHTML = `<td colspan="6">No requests match. Try a different search or filter, or create a new request.</td>`;
+    tableBody.appendChild(tr);
+    return;
+  }
+
   rows.forEach(r=>{
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${r.id}</td>
-      <td>${r.requester_name}</td>
-      <td>${r.category}</td>
-      <td>${r.priority}</td>
-      <td>${r.status}</td>
-      <td>
+      <td data-label="ID">${r.id}</td>
+      <td data-label="Requester">${r.requester_name}</td>
+      <td data-label="Category">${r.category}</td>
+      <td data-label="Priority"><span class="badge badge-priority-${slug(r.priority)}">${r.priority}</span></td>
+      <td data-label="Status"><span class="badge badge-status-${slug(r.status)}">${r.status}</span></td>
+      <td data-label="Action">
         <button data-id="${r.id}" class="editBtn">Edit</button>
         <button data-id="${r.id}" class="delBtn">Delete</button>
       </td>`;

@@ -8,29 +8,44 @@
 </head>
 <body>
   <header>
-    <h1>ICT SERVICE REQUEST SYSTEM</h1>
-    <button id="logoutBtn">Logout</button>
+    <div class="brand">
+      <div class="brand-mark">IT</div>
+      <h1>ICT Service Request System</h1>
+    </div>
+    <button id="logoutBtn">Log out</button>
   </header>
 
   <main>
     <section class="dashboard">
-      <div>Total Requests: <span id="totalCount">0</span></div>
-      <div>Pending: <span id="pendingCount">0</span></div>
-      <div>In Progress: <span id="inprogressCount">0</span></div>
-      <div>Completed: <span id="completedCount">0</span></div>
+      <div class="stat total">
+        <span class="stat-value" id="totalCount">0</span>
+        <span class="stat-label">Total requests</span>
+      </div>
+      <div class="stat pending">
+        <span class="stat-value" id="pendingCount">0</span>
+        <span class="stat-label">Pending</span>
+      </div>
+      <div class="stat inprogress">
+        <span class="stat-value" id="inprogressCount">0</span>
+        <span class="stat-label">In progress</span>
+      </div>
+      <div class="stat completed">
+        <span class="stat-value" id="completedCount">0</span>
+        <span class="stat-label">Completed</span>
+      </div>
     </section>
 
     <section class="controls">
-      <button id="newRequestBtn">New Request</button>
+      <button id="newRequestBtn">+ New request</button>
       <input id="searchInput" placeholder="Search requester or description">
       <select id="statusFilter">
-        <option value="">All Status</option>
+        <option value="">All status</option>
         <option>Pending</option>
         <option>In Progress</option>
         <option>Completed</option>
       </select>
       <select id="priorityFilter">
-        <option value="">All Priority</option>
+        <option value="">All priority</option>
         <option>Low</option>
         <option>Medium</option>
         <option>High</option>
@@ -51,7 +66,7 @@
     <form id="requestForm" class="modal-content">
       <h2 id="formTitle">New Request</h2>
       <input type="hidden" id="requestId">
-      <label>Requester Name<input id="requester" required></label>
+      <label>Requester name<input id="requester" required></label>
       <label>Department<input id="department" required></label>
       <label>Category<select id="category">
         <option>Computer repair</option>
@@ -73,8 +88,8 @@
         <option>Completed</option>
       </select></label>
       <div class="form-actions">
-        <button type="submit">Save</button>
         <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit">Save</button>
       </div>
     </form>
   </div>
