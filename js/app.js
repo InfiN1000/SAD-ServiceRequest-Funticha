@@ -117,6 +117,7 @@ document.getElementById('newRequestBtn').addEventListener('click', ()=>{
 document.getElementById('cancelBtn').addEventListener('click', ()=>{ closeForm(); });
 
 function openForm(data){
+  const statusInput = document.getElementById('status');
   document.getElementById('formTitle').textContent = data ? 'Edit Request' : 'New Request';
   document.getElementById('requestId').value = data?.id || '';
   document.getElementById('requester').value = data?.requester_name || '';
@@ -124,7 +125,8 @@ function openForm(data){
   document.getElementById('category').value = data?.category || 'Computer repair';
   document.getElementById('description').value = data?.description || '';
   document.getElementById('priority').value = data?.priority || 'Low';
-  document.getElementById('status').value = data?.status || 'Pending';
+  statusInput.value = data?.status || 'Pending';
+  statusInput.disabled = !data;
   modal.classList.remove('hidden');
 }
 function closeForm(){ modal.classList.add('hidden'); }
@@ -149,7 +151,7 @@ form.addEventListener('submit', async (e)=>{
 
   if (id){
     const { error } = await sb.from('service_requests').update(payload).eq('id', id);
-    if (error) return alert('Update failed');
+    if (error) return alert(`Update failed: ${error.message || 'You may not have permission to edit this request.'}`);
   } else {
     payload.status = 'Pending';
     const { error } = await sb.from('service_requests').insert([payload]);
