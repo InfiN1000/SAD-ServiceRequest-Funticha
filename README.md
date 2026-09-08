@@ -18,7 +18,30 @@ The university's ICT office currently receives technical support concerns throug
 
 ## Use Case Diagram
 
-![Use Case Diagram](C:\Users\dell\Documents\LAB3\use-case-diagram.png)
+```mermaid
+graph LR
+  User((System User /<br/>ICT Personnel))
+  subgraph System["ICT Service Request System"]
+    UC1[Login]
+    UC2[View Dashboard]
+    UC3[Create Request]
+    UC4[View Requests]
+    UC5[Search Request]
+    UC6[Filter Requests]
+    UC7[Update Request]
+    UC8[Delete Request]
+    UC9[Logout]
+  end
+  User --> UC1
+  User --> UC2
+  User --> UC3
+  User --> UC4
+  User --> UC5
+  User --> UC6
+  User --> UC7
+  User --> UC8
+  User --> UC9
+```
 
 | Use Case | Description |
 |---|---|
@@ -36,9 +59,25 @@ The university's ICT office currently receives technical support concerns throug
 
 ## Entity-Relationship Diagram (ERD)
 
-![ERD](documentation/diagrams/erd-diagram.png)
-
-*Editable source: [`documentation/diagrams/erd-diagram.drawio`](documentation/diagrams/erd-diagram.drawio) — open in [draw.io](https://app.diagrams.net) to edit, then re-export as PNG to replace the image above.*
+```mermaid
+erDiagram
+  USER ||--o{ SERVICE_REQUEST : creates
+  USER {
+    uuid user_id PK
+    text email
+  }
+  SERVICE_REQUEST {
+    bigint id PK
+    text requester_name
+    text department
+    text category
+    text description
+    text priority
+    text status
+    timestamptz created_at
+    uuid user_id FK
+  }
+```
 
 A single `USER` (managed by Supabase Auth) can create many `SERVICE_REQUEST` records; each request belongs to exactly one user.
 
