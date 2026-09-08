@@ -108,7 +108,10 @@ A single `USER` (managed by Supabase Auth) can create many `SERVICE_REQUEST` rec
 
 ## Screenshots
 
-<!-- Add your screenshots below, e.g.: -->
+**Login page**
+
+**Dashboard**
+![Dashboard](images/Dashboard.png)
 <!-- ![Login page](documentation/screenshots/login.png) -->
 <!-- ![Dashboard](documentation/screenshots/dashboard.png) -->
 <!-- ![New request form](documentation/screenshots/new-request.png) -->
