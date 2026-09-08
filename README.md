@@ -115,10 +115,10 @@ A single `USER` (managed by Supabase Auth) can create many `SERVICE_REQUEST` rec
 ![Dashboard](images/Dashboard.png)
 
 **New request form**
-![New_Request_Form](New_Request_Form.png)
+![New_Request_Form](images/New_Request_Form.png)
 
 **Search and Filter**
-![Search&Filter](Search&Filter.png)
+![Search&Filter](images/Search&Filter.png)
 <!-- ![Login page](documentation/screenshots/login.png) -->
 <!-- ![Dashboard](documentation/screenshots/dashboard.png) -->
 <!-- ![New request form](documentation/screenshots/new-request.png) -->
