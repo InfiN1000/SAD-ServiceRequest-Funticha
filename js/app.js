@@ -3,6 +3,10 @@ const tableBody = document.querySelector('#requestsTable tbody');
 const modal = document.getElementById('modal');
 const form = document.getElementById('requestForm');
 const sb = window.supabaseClient;
+let requestRows = [];
+let searchQuery = '';
+let selectedStatus = '';
+let selectedPriority = '';
 
 // redirect if not authenticated
 (async ()=>{
@@ -31,6 +35,26 @@ function formatDate(value){
     month: 'short',
     day: 'numeric'
   }).format(date);
+}
+
+function filteredRows(){
+  const query = searchQuery.toLowerCase();
+
+  return requestRows.filter(row => {
+    const searchableText = [
+      row.requester_name,
+      row.description,
+      row.category,
+      row.priority,
+      row.status,
+      row.created_at,
+      formatDate(row.created_at)
+    ].join(' ').toLowerCase();
+
+    return (!query || searchableText.includes(query))
+      && (!selectedStatus || row.status === selectedStatus)
+      && (!selectedPriority || row.priority === selectedPriority);
+  });
 }
 
 function renderRows(rows){
@@ -62,9 +86,9 @@ function renderRows(rows){
 }
 
 async function refresh(){
-  const rows = await fetchRequests();
-  renderRows(rows);
-  updateCounts(rows);
+  requestRows = await fetchRequests();
+  renderRows(filteredRows());
+  updateCounts(requestRows);
 }
 
 function updateCounts(rows){
@@ -138,27 +162,18 @@ tableBody.addEventListener('click', async (e)=>{
 });
 
 document.getElementById('searchInput').addEventListener('input', async (e)=>{
-  const q = e.target.value.trim();
-  let builder = sb.from('service_requests').select('*');
-  if (q) builder = builder.or(`requester_name.ilike.%${q}%,description.ilike.%${q}%`);
-  const { data } = await builder.order('id', {ascending:true});
-  renderRows(data || []);
+  searchQuery = e.target.value.trim();
+  renderRows(filteredRows());
 });
 
 document.getElementById('statusFilter').addEventListener('change', async (e)=>{
-  const v = e.target.value;
-  let builder = sb.from('service_requests').select('*');
-  if (v) builder = builder.eq('status', v);
-  const { data } = await builder.order('id', {ascending:true});
-  renderRows(data || []);
+  selectedStatus = e.target.value;
+  renderRows(filteredRows());
 });
 
 document.getElementById('priorityFilter').addEventListener('change', async (e)=>{
-  const v = e.target.value;
-  let builder = sb.from('service_requests').select('*');
-  if (v) builder = builder.eq('priority', v);
-  const { data } = await builder.order('id', {ascending:true});
-  renderRows(data || []);
+  selectedPriority = e.target.value;
+  renderRows(filteredRows());
 });
 
 // initial load

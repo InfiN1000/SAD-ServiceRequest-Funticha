@@ -4,8 +4,8 @@ A web-based prototype that lets ICT office staff record, monitor, search, filter
 
 **Student:** _[Steve D. Funticha]_
 **Section:** _[BSIT-3A]_
-**GitHub Repository:** _[[repo URL](https://github.com/InfiN1000/AD-ServiceRequest-Funticha)]_
-**Live System:** _[[GitHub Pages URL](https://infin1000.github.io/AD-ServiceRequest-Funticha/)]_
+**GitHub Repository:** _[https://github.com/InfiN1000/AD-ServiceRequest-Funticha]_
+**Live System:** _[https://infin1000.github.io/SAD-ServiceRequest-Funticha/]_
 **Credentials:** _[Email: easthieve.f@gmail.com Password: DIlag123456]_
 
 ---
@@ -144,5 +144,3 @@ A single `USER` (managed by Supabase Auth) can create many `SERVICE_REQUEST` rec
 - **Front end:** HTML, CSS, JavaScript — hosted on GitHub Pages
 - **Backend:** Supabase (PostgreSQL + Authentication)
 - **Security:** Row Level Security (RLS) policies scoped to `auth.uid()`
-
-See [`documentation/system-analysis.md`](documentation/system-analysis.md) for the full system analysis and [`documentation/deployment.md`](documentation/deployment.md) for setup/deployment steps.
