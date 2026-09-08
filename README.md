@@ -18,7 +18,7 @@ The university's ICT office currently receives technical support concerns throug
 
 ## Use Case Diagram
 
-![Use Case Diagram](documentation/diagrams/use-case-diagram.png)
+![Use Case Diagram](C:\Users\dell\Documents\LAB3\use-case-diagram.png)
 
 | Use Case | Description |
 |---|---|
