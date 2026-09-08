@@ -126,7 +126,7 @@ function openForm(data){
   document.getElementById('description').value = data?.description || '';
   document.getElementById('priority').value = data?.priority || 'Low';
   statusInput.value = data?.status || 'Pending';
-  statusInput.disabled = !data;
+  statusInput.disabled = false;
   modal.classList.remove('hidden');
 }
 function closeForm(){ modal.classList.add('hidden'); }
