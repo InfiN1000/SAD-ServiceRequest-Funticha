@@ -74,7 +74,7 @@ function renderRows(rows){
   if (!rows || rows.length === 0){
     const tr = document.createElement('tr');
     tr.className = 'empty-row';
-    tr.innerHTML = `<td colspan="7">No requests match. Try a different search or filter, or create a new request.</td>`;
+    tr.innerHTML = `<td colspan="8">No requests match. Try a different search or filter, or create a new request.</td>`;
     tableBody.appendChild(tr);
     return;
   }
@@ -85,6 +85,7 @@ function renderRows(rows){
       <td data-label="ID">${r.id}</td>
       <td data-label="Requester">${r.requester_name}</td>
       <td data-label="Category">${r.category}</td>
+      <td data-label="Description">${r.description}</td>
       <td data-label="Priority"><span class="badge badge-priority-${slug(r.priority)}">${r.priority}</span></td>
       <td data-label="Status"><span class="badge badge-status-${slug(r.status)}">${r.status}</span></td>
       <td data-label="Date">${formatDate(r.created_at)}</td>
