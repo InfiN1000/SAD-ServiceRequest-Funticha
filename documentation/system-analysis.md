@@ -142,7 +142,3 @@ Authentication   PostgreSQL
 ```
 
 GitHub Pages hosts the static front end (HTML, CSS, JavaScript). The browser calls the Supabase JavaScript client directly over HTTPS to authenticate users and perform CRUD operations against the `service_requests` table, with Row Level Security enforcing that a user can only modify records they created.
-
-## 7. Requirements Traceability
-
-See [`requirements-traceability.md`](./requirements-traceability.md) for the mapping between functional requirements, implemented features, and test cases.
