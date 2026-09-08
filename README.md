@@ -3,9 +3,13 @@
 A web-based prototype that lets ICT office staff record, monitor, search, filter, and update technical support requests, built with HTML/CSS/JavaScript and a Supabase backend, deployed on GitHub Pages.
 
 **Student:** _[Steve D. Funticha]_
+---
 **Section:** _[BSIT-3A]_
+---
 **GitHub Repository:** _[https://github.com/InfiN1000/AD-ServiceRequest-Funticha]_
+---
 **Live System:** _[https://infin1000.github.io/SAD-ServiceRequest-Funticha/]_
+---
 **Credentials:** _[Email: easthieve.f@gmail.com Password: DIlag123456]_
 
 ---

@@ -37,21 +37,32 @@ function formatDate(value){
   }).format(date);
 }
 
+function searchValues(row){
+  const date = row.created_at ? new Date(row.created_at) : null;
+  const isoDate = date && !Number.isNaN(date.getTime())
+    ? date.toISOString().slice(0, 10)
+    : '';
+
+  return [
+    row.requester_name,
+    row.description,
+    row.category,
+    row.priority,
+    row.status,
+    row.created_at,
+    formatDate(row.created_at),
+    isoDate
+  ].map(value => String(value ?? '').toLowerCase());
+}
+
 function filteredRows(){
   const query = searchQuery.toLowerCase();
 
   return requestRows.filter(row => {
-    const searchableText = [
-      row.requester_name,
-      row.description,
-      row.category,
-      row.priority,
-      row.status,
-      row.created_at,
-      formatDate(row.created_at)
-    ].join(' ').toLowerCase();
+    const matchesSearch = !query || searchValues(row)
+      .some(value => value.includes(query));
 
-    return (!query || searchableText.includes(query))
+    return matchesSearch
       && (!selectedStatus || row.status === selectedStatus)
       && (!selectedPriority || row.priority === selectedPriority);
   });
@@ -86,7 +97,7 @@ function renderRows(rows){
 }
 
 async function refresh(){
-  requestRows = await fetchRequests();
+  requestRows = (await fetchRequests()) || [];
   renderRows(filteredRows());
   updateCounts(requestRows);
 }
@@ -161,17 +172,17 @@ tableBody.addEventListener('click', async (e)=>{
   }
 });
 
-document.getElementById('searchInput').addEventListener('input', async (e)=>{
+document.getElementById('searchInput').addEventListener('input', (e)=>{
   searchQuery = e.target.value.trim();
   renderRows(filteredRows());
 });
 
-document.getElementById('statusFilter').addEventListener('change', async (e)=>{
+document.getElementById('statusFilter').addEventListener('change', (e)=>{
   selectedStatus = e.target.value;
   renderRows(filteredRows());
 });
 
-document.getElementById('priorityFilter').addEventListener('change', async (e)=>{
+document.getElementById('priorityFilter').addEventListener('change', (e)=>{
   selectedPriority = e.target.value;
   renderRows(filteredRows());
 });
