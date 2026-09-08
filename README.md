@@ -128,14 +128,14 @@ A single `USER` (managed by Supabase Auth) can create many `SERVICE_REQUEST` rec
 
 | Test ID | Test Scenario | Expected Result | Result |
 |---|---|---|---|
-| TC-01 | Login using valid account | Dashboard appears | |
-| TC-02 | Submit valid request | Request saved | |
-| TC-03 | Display requests | Existing records appear | |
-| TC-04 | Modify request | Changes saved | |
-| TC-05 | Delete request | Confirmation appears and record is removed | |
-| TC-06 | Search requester | Matching records displayed | |
-| TC-07 | Filter Pending requests | Only Pending records displayed | |
-| TC-08 | Open deployed URL | Application loads online | |
+| TC-01 | Login using valid account | Dashboard appears | Pass |
+| TC-02 | Submit valid request | Request saved | Pass |
+| TC-03 | Display requests | Existing records appear | Pass |
+| TC-04 | Modify request | Changes saved | Pass |
+| TC-05 | Delete request | Confirmation appears and record is removed | Pass |
+| TC-06 | Search requester | Matching records displayed | Pass |
+| TC-07 | Filter Pending requests | Only Pending records displayed | Pass |
+| TC-08 | Open deployed URL | Application loads online | Pass |
 
 ---
 
